@@ -43,8 +43,11 @@ This Copyleaks Extension helps to check Plagiarism of the original content withi
 	}
 
 ```
-
-3) Update the target(Tridion Sites CM) URL in package.json file as below
+3) Navigate to Access Management Application tab and click on Tridion Sites Experience space and enter Allowed redirect URLS as below
+	
+	https://localhost:3000/ui/signin-oidc
+	
+4) Update the target(Tridion Sites CM) URL in package.json file as below
 	
 ```json
 	"dev": "webpack serve --config ./webpack.dev.config.js --progress --env target=https://domain.com manifest=../manifest.json config=../copyleaks-addon.config.json"
