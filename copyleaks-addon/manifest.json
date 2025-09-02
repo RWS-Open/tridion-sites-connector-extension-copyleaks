@@ -1,0 +1,21 @@
+{
+    "id": "copyleaks-addon",
+    "name": "Copyleaks Addon",
+    "author": "RWS",
+    "description": "Copyleaks addon",
+    "manifestVersion": "1.0.0",
+    "requireConfiguration": "yes",
+    "version": "1.0.0",
+    "extensions": [
+        {
+            "name": "copyleaks-extension",
+            "type": "ExperienceSpaceExtension",
+            "properties": {
+                "main": "dist\\copyleaks-extension\\main.js",
+                "files": [
+                    "dist\\copyleaks-extension\\main.js"
+                ]
+            }
+        }
+    ]
+}
