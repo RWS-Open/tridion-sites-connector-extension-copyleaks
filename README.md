@@ -1,139 +1,105 @@
 # Tridion Sites - Copyleaks Extension(Plagiarism Checker)
 
-This Copyleaks Extension helps to check Plagiarism of the original content within the Tridion Platform using Copyleaks APIs
+## Overview
 
-## Prerequisites
+This extension integrates the Copyleaks Plagiarism Detection API with Tridion Sites, enabling users to scan and verify the originality of component content directly within the Tridion platform.
 
-1) Node Js Latest
+## 🛠️ Prerequisites
 
-2) Tridion Sites 10.1
-	https://www.rws.com/
+Before you begin, ensure the following are available:
+
+1. Node.js (Latest version)
+   
+	[Download Node.js](https://nodejs.org)
+
+2. **[Tridion Sites 10.1](https://www.rws.com)**
 	
-3) Webhooks server
+3. **[Copyleaks Account and API Credentials](https://copyleaks.com)**
 
-4) Copyleaks Credentials
-	https://copyleaks.com/
+4. Webhooks Server (Required to receive scan results)
 	
 
-## Configure
+## ⚙️ Configuration
 
+1. Download the extension(copyleaks-extension-1.0.0.zip) from [releases](https://github.com/RWS-Open/tridion-sites-connector-extension-copyleaks/releases)
 
-1) Navigate to root directory of the Extension
+2. UnZip the package 
 
-2) Update the following json in copyleaks-addon.config.json file
+3) **Edit** copyleaks-addon.config.json and provide the following values:
 
-	EMAIL:Copyleaks email Id
-	API_KEY : API Key for copyleaks scan
-	PROXY_SERVER_BASE_URL : proxy server url
-	WEB_HOOKS_URL : webhooks url from proxy server
-	WEB_HOOKS_NEWRESULT : webhooks url from proxy server
-
-```json
-	
+	```json		
 	{
 		"configuration": {
 			"copyleaks-extension": {            
 				"EMAIL":"",
 				"API_KEY":"",
 				"PROXY_SERVER_BASE_URL":"http://localhost:5000",
-				"WEB_HOOKS_URL":"https://domain.com/webhooks",
-				"WEB_HOOKS_NEWRESULT":"https://domain.com/newResult"
+				"WEB_HOOKS_URL":"https://yourdomain.com/webhooks",
+				"WEB_HOOKS_NEWRESULT":"https://yourdomain.com/newResult"
 			}
 		}
 	}
+	```		
 
-```
-3) Navigate to Access Management Application tab and click on Tridion Sites Experience space and enter Allowed redirect URLS as below
+## 🚀 Deployment
+
+To deploy the extension on Tridion Sites: 
+
+**Upload to Add-on Manager:**
+
+1. Navigate to addons:
+
+		https://addons.yourdomain:83/addon/ui
 	
-	https://localhost:3000/ui/signin-oidc
-	
-4) Update the target(Tridion Sites CM) URL in package.json file as below
-	
-```json
-	"dev": "webpack serve --config ./webpack.dev.config.js --progress --env target=https://domain.com manifest=../manifest.json config=../copyleaks-addon.config.json"
-```
-	
-	where 
-		target = https://domain.com (tridion sites cm url)
+2. Click **Upload Add-on Package.**
+
+3. Select the ZIP package from the copyleaks-extension folder.
+
+4. After upload:
+  
+5. Click on the uploaded extension to open details.
 		
+6. Click **Upload** again and provide the copyleaks-addon.config.json.
+   
 
-## Installation
+## 🌐 Webhooks Server
+
+Used to receive Copyleaks scan results.
 
 
-1) Navigate to copyleaks-extension folder and run the below command to install node module dependecies 
-	
+### Setup Instructions
+
+1. Navigate to the webhooks server directory:
+   
+   cd copyleaks-webhooks-server
+
+2. Install dependencies: 
+
 	npm install
-	
-	
-	
-## Usage
 
- 
-To run the application locally:
+3. Start the webhook server:
+
+	node app.js
 
 
-1) Navigate to copyleaks-extension folder and run the command 
-	
-		npm run dev
-		
-2) Browse the url https://localhost:3010/ui
+## ▶️ Usage (Local Development)
 
-3) Open the publication and navigate to components
+1. Open a **publication**, then navigate to **Components.**
 
-4) Select the component 
+2. Select a component.
 
-5) After selecting the component the copyleaks scan properties icon will appear on the right side panel 
+3. The **Copyleaks Scan** icon will appear in the right-side panel. 
 
-6) Click on the icon
+4. Click the icon to view scan status:
 
-7) This checks the component content copyleaks details if the component is already scanned for copyleaks plagiarism-checker
+    - If the component was already scanned, results will be shown.
 
-8) If not scanned already click on the scan component button 
+    - If not, click Scan Component to initiate a scan.
 
-9) After clicking on the scan component it will take some time get the results using the webhooks 
+5. Wait for scan completion (results received via webhooks).
 
-10) Once the results are available from the webhooks you can check the copyleaked content details
-
-
-
-## Deploy
-
-
-Deploy the extension to Tridion Sites addon manager
-
-
-1) Navigate to copyleaks-extension folder and run the following command to build and pack the extension
-
-	npm run build
-	
-	npm run pack
-	
-	
-2) Navigate to addons manager using the url
-
-	e.g: https://addons.domain:83/addon/ui
-	
-3) click on Upload Add-on Package
-
-4) Select the zip created in above step 1 and click open
-
-5) Click on the uploaded zip file which navigates to extension details screen
-
-6) Click on Upload button to upload the Json file(copyleaks-addon.config.json) available in the copyleaks-addon folder 
-
-7) This should enable the uploaded addon file(copyleaks extension) and can be checked by navigating to Tridion Sites CM components.
-
-
-# Webhooks Server
-
-
-## Setup
-
-1) Navigate to copyleaks-webhooks-server and run the command npm install to install node dependecy modules
-
-2) Run the command node app.js to start the webhooks proxy server
-	
-	
+6. Once ready, review the plagiarism report.
+  
 
  	
 	
