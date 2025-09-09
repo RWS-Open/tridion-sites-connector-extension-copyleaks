@@ -63,7 +63,7 @@ const CopyleaksAction = ({componentData, scanId, isLoading,errorMsg}: ICopyLeaks
                 }
             }
             const response = await copyleaksClient.post(`/scan/${scanId}`, data);
-            console.log(response)
+            
             setsProcessing(false)
         }catch(error){
             setsProcessing(false)
